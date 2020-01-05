@@ -25,7 +25,7 @@ public class UserServiceImpl implements UserService {
     public UserServiceImpl(UserRepository userRepository, RoleRepository roleRepository, BCryptPasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
-        this.passwordEncoder=passwordEncoder;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
@@ -37,31 +37,31 @@ public class UserServiceImpl implements UserService {
         user.setRoles(userRoles);
         user.setStatus(Status.ACTIVE);
         User registeredUser = userRepository.save(user);
-        log.info("IN register - user: {} successfully registered",registeredUser);
+        log.info("IN register - user: {} successfully registered", registeredUser);
         return registeredUser;
     }
 
     @Override
     public List<User> getAll() {
         List<User> users = userRepository.findAll();
-        log.info("IN getAll - {} users found",users);
+        log.info("IN getAll - {} users found", users);
         return users;
     }
 
     @Override
     public User findByUsername(String username) {
         User user = userRepository.findByUsername(username);
-        log.info("IN findByUsername - user: {} found by username: {}",user,username);
+        log.info("IN findByUsername - user: {} found by username: {}", user, username);
         return user;
     }
 
     @Override
     public User findById(Long id) {
         User user = userRepository.findById(id).orElse(null);
-        if (user == null){
-            log.warn("IN findById - no user was found by id: {}",id);
-        }else {
-            log.info("IN - the user was found by id: {}",id);
+        if (user == null) {
+            log.warn("IN findById - no user was found by id: {}", id);
+        } else {
+            log.info("IN - the user was found by id: {}", id);
         }
         return user;
 

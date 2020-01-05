@@ -6,6 +6,7 @@ import com.example.jwt.model.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
@@ -18,7 +19,7 @@ public final class JWTUserFactory {
         return new JWTUser(user.getId(),
                 user.getUsername(), user.getFirstName(),
                 user.getLastName(), user.getPassword(), user.getEmail()
-                , user.getStatus().equals(Status.ACTIVE), user.getUpdated(), null);
+                , user.getStatus().equals(Status.ACTIVE), user.getUpdated(), mapToGrantedAuthorities(new ArrayList<>(user.getRoles())));
 
     }
 
